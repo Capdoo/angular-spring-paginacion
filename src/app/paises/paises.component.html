@@ -1,11 +1,12 @@
 <div class="container">
     <h2>Paises</h2>
-    <table class="table">
+    <table class="table text-center" >
         <thead>
           <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Capital</th>
+            <th scope="col" (click)="setOrder('id')">Id</th>
+            <th scope="col" (click)="setOrder('nombre')">Nombre</th>
+            <th scope="col" (click)="setOrder('capital')">Capital</th>
+            <th scope="col"><i class="fas fa-sort" (click)="sort()"></i></th>
           </tr>
         </thead>
         <tbody>
@@ -13,6 +14,17 @@
             <th>{{pais.id}}</th>
             <td>{{pais.nombre}}</td>
             <td>{{pais.capital}}</td>
+            <td></td>
+          </tr>
+          <tr>
+              <td><i class="fas fa-angle-left" (click)="rewind()"></i></td>
+              <td colspan="2">
+                <span *ngFor="let p of totalPages; let i = index">
+                  <a style="cursor: pointer;" (click)="setPage(i)"
+                  [ngClass]="{'text-primary': i === page}">{{i+1}}&nbsp;&nbsp;&nbsp;</a>
+                </span>
+              </td>
+              <td><i class="fas fa-angle-right"(click)="forward()"></i></td>
           </tr>
         </tbody>
       </table>
